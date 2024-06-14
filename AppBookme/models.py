@@ -1,22 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-from AppBookme.models import Autores, Libro, Genero
 
 # Create your models here.
-class Libro(models.Model):
-    titulo = models.CharField(max_length=40, unique=True)
-    autor = models.ManyToManyField(Autores, related_name='libros')
-    genero = models.ManyToManyField(Genero)
-    publicacion = models.IntegerField()
-    sinopsis= models.TextField(default="Sin reseñas")
-
-    def __str__(self):
-        return f"{self.titulo}-{self.autor}-{self.genero}-{self.publicacion}"
-
 class Autores(models.Model):
     nombre = models.CharField(max_length=40)
     apellido= models.CharField(max_length=40)
     nacionalidad= models.CharField(max_length=25)
+    
     def __str__(self):
         return f"{self.nombre}-{self.apellido}-{self.nacionalidad}"
 
@@ -26,6 +16,16 @@ class Genero(models.Model):
 
     def __str__(self):
         return f"{self.nombre}/n{self.descripcion}"
+
+class Libro(models.Model):
+    titulo = models.CharField(max_length=40, unique=True)
+    autor = models.ManyToManyField(Autores, related_name='libros')
+    genero = models.ManyToManyField(Genero)
+    publicacion = models.IntegerField()
+    sinopsis= models.TextField(default="Sin sinopsis")
+
+    def __str__(self):
+        return f"{self.titulo}-{self.autor}-{self.genero}-{self.publicacion}"
 
 class Editoriales(models.Model):
     nombre = models.CharField(max_length=40)
@@ -45,6 +45,11 @@ class Reseñas(models.Model):
     class Meta:
         unique_together = ['usuario', 'libro']
 
+# class ListaDeseos(models.Model):
+
+# class EstanteriaVirtual(models.Model):
+
+# class VentaIntercambio(models.Model):
 
 
 
