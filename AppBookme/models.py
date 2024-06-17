@@ -19,8 +19,8 @@ class Genero(models.Model):
 
 class Libro(models.Model):
     titulo = models.CharField(max_length=40, unique=True)
-    autor = models.ManyToManyField(Autores, related_name='libros')
-    genero = models.ManyToManyField(Genero)
+    autor = models.ForeignKey(Autores, on_delete=models.CASCADE, related_name='libros')
+    genero = models.ForeignKey(Genero, on_delete=models.CASCADE, related_name='libros')
     publicacion = models.IntegerField()
     sinopsis= models.TextField(default="Sin sinopsis")
 

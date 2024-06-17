@@ -9,18 +9,18 @@ from AppBookme.models import Autores, Genero, Libro, Editoriales, Reseñas
 def inicio(req):
     return render(req, "inicio.html", {})
 
-def AcercaDeMi(req):
-    return render(req, "acerca_de_mi.html", {})
+def acercaDeMi(req):
+    return render(req, "acerca_de_mi.html", {})# "AcercaDeMi"
 
 class LibrosLista(ListView):
 	model = Libro
-	template_name = "lista_libros.html"#'ListaLibros'
+	template_name = "lista_libros.html"# "ListaLibros"
 	context_object_name = "libros"
 
 class LibrosDetalles(DetailView):
 	model = Libro
-	template_name = "detalle_libro.html"#'DetalleLibro' <id>
-	context_object_name = "libros"
+	template_name = "detalle_libro.html"#"DetalleLibro" <id>
+	context_object_name = "libro"
 
 class LibroFormulario(CreateView):
 	model = Libro

@@ -1,0 +1,60 @@
+{% extends 'principal.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Libros Book-Me</title>
+{% endblock titulo %}
+
+{% include 'navbar.html' %}
+
+{% block BloqueQueCambia %}
+<div class="about-bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="abouttitle">
+               <h2>Informacion sebre el libro:</h2>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--Books -->
+<div class="Books">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-10 offset-md-1">
+            <div class="titlepage">
+            </div>
+         </div>
+      </div>
+      <div class="row box">
+         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <div class="book-box">
+               <figure><img src="{% static 'images/book-1.jpg' %}" alt="img"/></figure>
+            </div>
+         </div>
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="book-box">
+               <figure>
+                  <ul>
+                     <p style="font-size: 30px; color: purple; font-weight: bold"><strong>"{{ libro.titulo }}"</strong> </p>
+                     <p style="font-size: 25px; color: purple;">{{ libro.autor.nombre }} {{ libro.autor.apellido }} </p>
+                     <p style="font-size: 25px; color: purple;">{{ libro.genero.nombre }}</p>
+                     <p style="font-size: 25px; color: purple;">{{ libro.publicacion }}</p>
+                     <p style="font-size: 25px; color: purple; font-style: italic">{{ libro.sinopsis }}</p>
+                  </ul>
+               </figure>
+            </div>
+         </div>
+         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <div class="book-box">
+               <figure><img src="{% static 'images/book-1.jpg' %}" alt="img"/></figure>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- end Books -->
+{% endblock BloqueQueCambia %}

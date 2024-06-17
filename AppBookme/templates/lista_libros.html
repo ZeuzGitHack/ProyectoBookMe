@@ -1,12 +1,14 @@
 {% extends 'principal.html' %}
+
 {% load static %}
 
 {% block titulo %}
-   <title>Book Me-Libros</title>
+<title>Libros Book-Me</title>
 {% endblock titulo %}
 
-{% block ContenidoQueCambia %}
-<!-- Libros -->
+{% include 'navbar.html' %}
+
+{% block BloqueQueCambia %}
 <div class="about-bg">
    <div class="container">
       <div class="row">
@@ -23,20 +25,21 @@
       <div class="row">
          <div class="col-md-10 offset-md-1">
             <div class="aboutheading">
-               <span>Listado de Libros</span>
+               <h2>Lista de libros</h2>
             </div>
          </div>
       </div>
       <div class="row border">
          <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
             <div>
-               {% block formulario %}
                <ul> 
                   {% for libro in libros %}
                      <li>
+                        {% for libro in libros %}
                         <a href="{% url 'DetalleLibro' libro.pk %}" style="font-size: 20px; color: purple;">
-                           "{{libro.titulo}}" - {{libro.autor}}
-                        </a>
+                        {{ libro.titulo }} - {{ libro.autor.nombre }} {{ libro.autor.apellido }}
+                     </a>
+                           {% endfor %}
                         <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
                            <a href="{% url 'EliminarLibro' libro.pk %}">Eliminar</a>
                            <a href="{% url 'EditarLibro' libro.pk %}">Editar</a>
@@ -44,8 +47,6 @@
                      </li>
                   {%endfor%}
                </ul>
-               {% endblock formulario %}
-            </div>
          </div>
          <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
             <div class="about-box">
@@ -55,5 +56,5 @@
       </div>
    </div>
 </div>
-<!-- Fin Libros -->
-{% endblock ContenidoQueCambia %}
+</div>
+{% endblock BloqueQueCambia %}
