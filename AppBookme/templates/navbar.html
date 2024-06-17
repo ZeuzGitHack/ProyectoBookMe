@@ -1,36 +1,36 @@
-<header class="header_section">
-  <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg custom_nav-container ">
-      <a class="navbar-brand" href="index.html">
-        <span>
-          Bostorek
-        </span>
-      </a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class=""> </span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link pl-lg-0" href="index.html">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html"> About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categories</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="blog.html"> Blog </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
+<header>
+    {% load static %}
+<!-- header inner -->
+<div class="header">
+    <div class="container">
+            <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                <div class="full">
+                        <div class="center-desk">
+                        <div class="logo"> <a href="index.html"><img src="{% static 'images/logo.png' %}" alt="#"></a> </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                <div class="menu-area">
+                        <div class="limit-box">
+                        <nav class="main-menu">
+                            <ul class="menu-area-main">
+                            <li style="margin-left: 20px; margin-right: 40px;"><date>2022-10-31</date> </li>
+                            <li> <a href="index.html">Home</a> </li>
+                            <li> <a href="about.html">About us</a> </li>
+                            <li><a href="books.html">Our Books</a></li>
+                            <li><a href="library.html">library</a></li>
+                            <li><a href="contact.html">Contact us</a></li>
+                            <li class="mean-last"> <a href="#"><img src="{% static 'images/top-icon.png' %}" alt="#" />  Login</a> </li>
+                            </ul>
+                        </nav>
+                        </div>
+                </div>
+            </div>
+            </div>
+    </div>
+</div>
+<!-- end header inner -->
 </header>
-<!-- end header section -->
+<!-- end header -->

@@ -1,0 +1,64 @@
+{% extends 'principal.html' %}
+{% load static %}
+
+{% block titulo %}
+   <title>Busqueda</title>
+{% endblock titulo %}
+
+{% block ContenidoQueCambia %}
+<!-- Titulo -->
+<div class="about-bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="abouttitle">
+               <h2>Buscar Libro</h2>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Formulario -->
+<div class="Library">
+   <div class="titlepage">
+      <form action="{% url 'Buscar' %}" method="get">
+         <p style="font-size: 20px;">Libro: <input type="text" name="libro"></p>
+         <input type="submit" value="Buscar">
+      </form>
+      <!-- Fin Formulario -->
+      <!-- Resultado -->
+      <div class="book-box">
+         
+         {% if libros %}
+         <h4>Resultados de la búsqueda:</h4>
+         {% for libro in libros %}
+         <ul>
+            <li style="font-size: 20px; color: purple;">{{ libro.titulo }}</li>
+            <li style="font-size: 20px; color: purple;">{{ libro.autor }}</li>
+            <li style="font-size: 20px; color: purple;">{{ libro.genero }}</li>
+            <li style="font-size: 20px; color: purple;">{{ libro.año_de_publicacion }}</li>
+            <li style="font-size: 20px; color: purple;"> - <br>{{ libro.reseña }}</li>
+            
+         {% endfor %}
+         {% else %}
+            <p style="font-size: 20px; color: red;">{{ mensaje }}</p>
+         </ul>
+         {% endif %}
+      </div>
+         <!-- Fin Resultado -->
+   </div>
+</div>
+<div class="bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-10 offset-md-1">
+            <div class="Library-box">
+               <figure>
+                  <img src="{% static 'images/Library-.jpg' %}" alt="#"/>
+               </figure>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock ContenidoQueCambia %}
