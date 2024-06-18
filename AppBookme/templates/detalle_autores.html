@@ -14,13 +14,12 @@
       <div class="row">
          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div class="abouttitle">
-               <h2>Informacion sobre el libro:</h2>
+               <h2>Informacion sobre el Autor:</h2>
             </div>
          </div>
       </div>
    </div>
 </div>
-<!--Books -->
 <div class="Books">
    <div class="container">
       <div class="row">
@@ -39,11 +38,18 @@
             <div class="book-box">
                <figure>
                   <ul>
-                     <p style="font-size: 30px; color: purple; font-weight: bold"><strong>"{{ libro.titulo }}"</strong> </p>
-                     <p style="font-size: 25px; color: purple;">{{ libro.autor.nombre }} {{ libro.autor.apellido }} </p>
-                     <p style="font-size: 25px; color: purple;">{{ libro.genero.nombre }}</p>
-                     <p style="font-size: 25px; color: purple;">{{ libro.publicacion }}</p>
-                     <p style="font-size: 25px; color: purple; font-style: italic">{{ libro.sinopsis }}</p>
+                     <li>
+                        <p style="font-size: 25px; color: purple;">{{ autor.nombre }} {{ autor.apellido }} </p>
+                        <p style="font-size: 25px; color: purple;">{{ autor.nacionalidad }}</p>
+                     </li>
+                  </ul>
+                  <h3>Sus Obras</h3>
+                  <ul>
+                     {% for libro in autor.libros.all %}
+                     <li>
+                        <p style="font-size: 25px; color: purple; font-style: italic">{{ libro.titulo }}</p>
+                     </li>
+                     {% endfor %}
                   </ul>
                </figure>
             </div>

@@ -31,7 +31,8 @@ class Editoriales(models.Model):
     nombre = models.CharField(max_length=40)
     pais= models.CharField(max_length=40)
     direccion = models.CharField(max_length=50)
-    libros = models.ForeignKey(Libro, on_delete=models.CASCADE)
+    contacto = models.EmailField(null=True)
+    libros = models.ForeignKey(Libro, on_delete=models.CASCADE, related_name='editorial')
 
     def __str__(self):
         return f"{self.nombre}-{self.pais}-{self.direccion}"

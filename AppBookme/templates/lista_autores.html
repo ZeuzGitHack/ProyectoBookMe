@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>Libros Book-Me</title>
+<title>Autores Book-Me</title>
 {% endblock titulo %}
 
 {% include 'navbar.html' %}
@@ -14,7 +14,7 @@
       <div class="row">
          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div class="abouttitle">
-               <h2>Libros</h2>
+               <h2>Autores</h2>
             </div>
          </div>
       </div>
@@ -25,41 +25,41 @@
       <div class="row">
          <div class="col-md-10 offset-md-1">
             <div class="aboutheading">
-               <h2>Lista de libros</h2>
+               <h2>Lista de Autores</h2>
             </div>
          </div>
       </div>
          <button class="read-more">
-            <a href="{% url 'BusquedaLibro' %}">Buscar Libro</a>
+            <a href="{% url 'BusquedaAutores' %}">Buscar Autor</a>
          </button>
       <div class="row border">
          <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
                <ul> 
-                  {% for libro in libros %}
+                  {% for aut in autor %}
                      <li>
-                        <a href="{% url 'DetalleLibro' libro.pk %}" style="font-size: 20px; color: purple; display: inline-block;">
-                        {{ libro.titulo }} - {{ libro.autor.nombre }} {{ libro.autor.apellido }}
+                        <a href="{% url 'DetalleAutores' aut.pk %}" style="font-size: 20px; color: purple; display: inline-block;">
+                        {{ aut.nombre }} {{ aut.apellido }} - {{ aut.nacionalidad }}
                         </a>
                         <button style="display: inline-block; margin: 20px;">
-                           <a href="{% url 'EliminarLibro' libro.pk %}">Eliminar</a>
+                           <a href="{% url 'EliminarAutores' aut.pk %}">Eliminar</a>
                         </button>
                         <button style="display: inline-block; margin: 20px;">
-                           <a href="{% url 'EditarLibro' libro.pk %}">Editar</a>
+                           <a href="{% url 'EditarAutores' aut.pk %}">Editar</a>
                         </button>
                      </li>
                   {%endfor%}
-                  </ul>
-               </div>
-            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
-               <div class="about-box">
-                  <figure style="text-align: end;">
-                     <img src="{% static 'images/about.png' %}" alt="img" />
-                  </figure>
-                  <button class="read-more"><a href="{% url 'FormularioLibro' %}">Agregar nuevo Libro</a></button>
-               </div>
+               </ul>
+            </div>
+         <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
+            <div class="about-box">
+               <figure style="text-align: end;">
+                  <img src="{% static 'images/about.png' %}" alt="img" />
+               </figure>
+               <button class="read-more"><a href="{% url 'FormularioAutores' %}">Agregar nuevo Autor</a></button>
             </div>
          </div>
       </div>
    </div>
+</div>
 </div>
 {% endblock BloqueQueCambia %}

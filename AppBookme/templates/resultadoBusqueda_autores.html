@@ -13,7 +13,7 @@
       <div class="row">
          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div class="abouttitle">
-               <h2>Buscar Libro</h2>
+               <h2>Buscar Autor</h2>
             </div>
          </div>
       </div>
@@ -22,31 +22,37 @@
 <!-- Formulario -->
 <div class="Library">
    <div class="titlepage">
-      <form action="{% url 'BuscaLibros' %}" method="get">
-         <p style="font-size: 20px;">Libro: <input type="text" name="libro"></p>
+      <form action="{% url 'BuscaAutores' %}" method="get">
+         <p style="font-size: 20px;">Autor: <input type="text" name="autor"></p>
          <input type="submit" value="Buscar">
       </form>
       <!-- Fin Formulario -->
       <!-- Resultado -->
       <div class="book-box">
-         {% if libros %}
+         {% if autores %}
          <h4>Resultados de la búsqueda:</h4>
-         {% for libro in libros %}
+         {% for autor in autores %}
          <ul>
-            <li style="font-size: 20px; color: purple;"><strong>{{ libro.titulo }}</strong></li>
-            <li style="font-size: 20px; color: purple;">{{ libro.autor }}</li>
-            <li style="font-size: 20px; color: purple;"><strong>{{ libro.genero.nombre }}</strong></li>
-            <li style="font-size: 20px; color: purple;">{{ libro.publicacion }}</li>
-            <li style="font-size: 20px; color: purple;"> - <br>{{ libro.sinopsis }}</li>
+            <a href="{% url 'DetalleAutores' autor.pk %}">
+               <li>
+                  <p style="font-size: 25px; color: purple;">{{ autor.nombre }} {{ autor.apellido }} </p>
+                  <br><p style="font-size: 25px; color: purple;">{{ autor.nacionalidad }}</p>
+               </li>
+            </a>
+         {% endfor %}
+         {% for libro in autor.libros.all %}
+         <li>
+            <p style="font-size: 25px; color: purple; font-style: italic">{{ libro.titulo }}</p>
+         </li>
          {% endfor %}
          {% else %}
             <p style="font-size: 20px; color: red;">{{ mensaje }}</p>
          </ul>
          {% endif %}
       </div>
-         <!-- Fin Resultado -->
    </div>
 </div>
+<!-- Fin Resultado -->
 <div class="bg">
    <div class="container">
       <div class="row">

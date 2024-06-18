@@ -1,0 +1,48 @@
+{% extends 'principal.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Nuevo Book-Me</title>
+{% endblock titulo %}
+
+{% include 'navbar.html' %}
+
+{% block BloqueQueCambia %}
+<div class="about-bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="abouttitle">
+               <h2>Nuevo Genero</h2>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Contact -->
+<div class="Contact">
+   <div class="container">
+      <div class="row">
+         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <form>
+               <div style="display: block;" class="row">
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                     <form action="{% url 'FormularioGeneros' %}" method="POST">{% csrf_token %}
+                        <table>
+                           {{form.as_p}}
+                        </table>
+                        <div>
+                           <button type="submit">
+                              <a href="{% url 'ListaGeneros' %}">Agregar</a>
+                           </button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock BloqueQueCambia %}

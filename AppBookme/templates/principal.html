@@ -50,7 +50,7 @@
                   <img class="first-slide" src="{% static 'images/banner.jpg' %}" alt="First slide">
                   <div class="container">
                      <div class="carousel-caption relative">
-                        <h1>Web sobre libros<br> Para amantes de libros<br> Bienvenodo!</h1>
+                        <h1>Web sobre libros<br> Para amantes de libros<br> Bienvenidos!!!</h1>
                         <p>Los libros son como puertas hacia mundos desconocidos,<br> donde los amantes de la lectura encuentran refugio <br> y se pierden en las historias que los transportan a lugares inimaginables.</p>
                         <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
                      </div>
@@ -97,7 +97,7 @@
                   <div class="card-body">
                         <h4 class="card-title">Libros</h4>
                         <p class="card-text">Informacion, sinopsis, y reseñas</p>
-                        <a href="#" class="btn btn-primary">Encontrar</a>
+                        <a href="{% url 'ListaLibros' %}" class="btn btn-primary">Encontrar</a>
                   </div>
                </div>
             </div>
@@ -107,7 +107,17 @@
                   <div class="card-body">
                         <h4 class="card-title">Autores</h4>
                         <p class="card-text">Informacion y sus obras <br><br></p>
-                        <a href="#" class="btn btn-primary">Encontrar</a>
+                        <a href="{% url 'ListaAutores' %}" class="btn btn-primary">Encontrar</a>
+                  </div>
+               </div>
+            </div>
+            <div style="width: 250px; margin: 0 10px; text-align: center;">
+               <div class="card">
+                  <img src="{% static '/images/b2.jpg' %}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                        <h4 class="card-title">Editoriales</h4>
+                        <p class="card-text">Informacion y Contacto  <br><br></p>
+                        <a href="{% url 'ListaEditoriales' %}" class="btn btn-primary">Encontrar</a>
                   </div>
                </div>
             </div>
