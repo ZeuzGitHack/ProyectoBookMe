@@ -28,14 +28,12 @@
             <form>
                <div style="display: block;" class="row">
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                     <form action="{% url 'FormularioLibro' %}" method="POST">{% csrf_token %}
+                     <form action="{% url 'FormularioAutores' %}" method="POST">{% csrf_token %}
                         <table>
                            {{form.as_p}}
                         </table>
                         <div>
-                           <button type="submit">
-                              <a href="{% url 'ListaAutores' %}">Agregar</a>
-                           </button>
+                           <button class="send-btn">Crear</button> 
                         </div>
                      </form>
                   </div>

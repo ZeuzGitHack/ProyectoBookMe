@@ -68,7 +68,7 @@ class AutoresDetalles(DetailView):
 class AutoresFormulario(CreateView):
 	model = Autores
 	template_name = "formulario_autores.html"
-	success_url = reverse_lazy('ListaAutores')
+	success_url = "/AppBookme/"
 	fields = ['nombre', 'apellido', 'nacionalidad']
 
 class AutoresEditar(UpdateView):
