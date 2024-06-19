@@ -31,12 +31,13 @@
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                 <div class="book-box">
                 <h1>Esta seguro que desea borrar la Editorial:</h1>
-                <form action="{% url 'EliminarAutores' editoriales.pk %}">{% csrf_token %}
+                <form action="{% url 'EliminarEditoriales' editoriales.pk %}" method="post">{% csrf_token %}
+
                     <h2 style="color: purple;"> {{editorial.nombre}}</h2>
-                        <button type="submit" class="read-more" style="display: inline-block; margin-right: 10px;" >
-                            <a href="{% url 'ListaEditoriales' %}">Confirmar</a>
-                        </button>
-                        <button class="read-more" style="display: inline-block;" >
+
+                        <button type="submit" class="read-more" style="display: inline-block; margin-right: 10px;" >Confirmar</button>
+
+                        <button style="display: inline-block;" >
                             <a href="{% url 'ListaEditoriales' %}">Cancelar</a>
                         </button>
                 </form>

@@ -22,7 +22,8 @@ class EditorialFormulario(forms.Form):
 	nombre= forms.CharField()
 	pais= forms.CharField()
 	direccion= forms.CharField()
-	libros = forms.ModelChoiceField(queryset=Libro.objects.all())
+	email=forms.EmailField()
+	libros = forms.ModelChoiceField(queryset=Libro.objects.all(), required=False)
 	class Meta:
 		model = Editoriales
 		fields = ['nombre', 'pais', 'direccion', 'libros']

@@ -31,9 +31,9 @@ def libroFormulario(req):
 			data = miFormulario.cleaned_data
 			nuevo_libro = Libro(titulo=data['titulo'], autor=data['autor'], genero=data['genero'], publicacion=data['publicacion'], sinopsis=data['sinopsis'])
 			nuevo_libro.save()
-			return render(req, "lista_libros.html", {"message": "Nuevo libro guardado con exito"})
+			return render(req, "inicio.html", {"message": "Nuevo libro guardado con exito"})
 		else:
-			return render(req, "formulario_libro.html", {"message": "Datos inválidos"})
+			return render(req, "inicio.html", {"message": "Datos inválidos"})
 	else:
 		miFormulario = LibroFormulario()
 		return render(req, "formulario_libro.html", {"miFormulario": miFormulario})
@@ -75,11 +75,20 @@ class AutoresDetalles(DetailView):
 	template_name = "detalle_autores.html"
 	context_object_name = "autor"
 
-class AutoresFormulario(CreateView):
-	model = Autores
-	template_name = "formulario_autores.html"
-	success_url = "/AppBookme/"
-	fields = ['nombre', 'apellido', 'nacionalidad']
+def autorFormulario(req):
+
+	if req.method == 'POST':
+		miFormulario = AutorFormulario(req.POST)
+		if miFormulario.is_valid():
+			data = miFormulario.cleaned_data
+			nuevo_autor = Autores(nombre=data['nombre'], apellido=data['apellido'], nacionalidad=data['nacionalidad'])
+			nuevo_autor.save()
+			return render(req, "inicio.html", {"message": "Nuevo autor guardado con exito"})
+		else:
+			return render(req, "inicio.html", {"message": "Datos inválidos"})
+	else:
+		miFormulario = AutorFormulario()
+		return render(req, "formulario_autores.html", {"miFormulario": miFormulario})
 
 class AutoresEditar(UpdateView):
 	model = Autores
@@ -120,12 +129,6 @@ class GenerosDetalles(DetailView):
 	template_name = "detalle_genero.html"
 	context_object_name = "genero"
 
-class GenerosFormulario(CreateView):
-	model = Genero
-	template_name = "formulario_genero.html"
-	success_url = reverse_lazy('ListaGeneros')
-	fields = ['nombre', 'descripcion']
-
 class GenerosEditar(UpdateView):
 	model = Genero
 	template_name = "editar_genero.html"
@@ -148,12 +151,6 @@ class EditorialesDetalles(DetailView):
 	model = Editoriales
 	template_name = "detalle_editoriales.html"
 	context_object_name = "editorial"
-
-class EditorialesFormulario(CreateView):
-	model = Editoriales
-	template_name = "formulario_editorial.html"
-	success_url = reverse_lazy('ListaEditoriales')
-	fields = ['nombre', 'pais', 'direccion', 'contacto', 'libros']
 
 class EditorialesEditar(UpdateView):
 	model = Editoriales

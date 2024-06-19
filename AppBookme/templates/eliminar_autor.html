@@ -31,14 +31,15 @@
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                 <div class="book-box">
                 <h1>Esta seguro que desea borrar el Autor:</h1>
-                <form action="{% url 'EliminarAutores' autor.pk %}">{% csrf_token %}
+                <form action="{% url 'EliminarAutores' autor.id %}" method="post">{% csrf_token %}
+
                     <h2 style="color: purple;"> {{autor.nombre}} {{autor.apellido}}</h2>
-                        <button type="submit" class="read-more" style="display: inline-block; margin-right: 10px;" >
-                            <a href="{% url 'ListaAutores' %}">Confirmar</a>
-                        </button>
-                        <button class="read-more" style="display: inline-block;" >
-                            <a href="{% url 'ListaAutores' %}">Cancelar</a>
-                        </button>
+
+                    <button type="submit" class="read-more" style="display: inline-block; margin-right: 10px;" >Confirmar</button>
+
+                    <button style="display: inline-block;" >
+                        <a href="{% url 'ListaAutores' %}">Cancelar</a>
+                    </button>
                 </form>
                 </div>
             </div>

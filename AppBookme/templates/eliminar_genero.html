@@ -30,13 +30,15 @@
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                 <div class="book-box">
-                <h1>Esta seguro que desea borrar el Autor:</h1>
-                <form action="{% url 'EliminarGeneros' autor.pk %}">{% csrf_token %}
-                    <h2 style="color: purple;"> {{generos.nombre}}</h2>
-                        <button type="submit" class="read-more" style="display: inline-block; margin-right: 10px;" >
-                            <a href="{% url 'ListaGeneros' %}">Confirmar</a>
-                        </button>
-                        <button class="read-more" style="display: inline-block;" >
+                <h1>Esta seguro que desea borrar el Genero:</h1>
+
+                <form action="{% url 'EliminarGeneros' genero.pk %}" method="post">{% csrf_token %}
+
+                    <h2 style="color: purple;"> {{genero.nombre}}</h2>
+
+                        <button type="submit" class="read-more" style="display: inline-block; margin-right: 10px;" >Confirmar</button>
+                        
+                        <button style="display: inline-block;" >
                             <a href="{% url 'ListaGeneros' %}">Cancelar</a>
                         </button>
                 </form>
