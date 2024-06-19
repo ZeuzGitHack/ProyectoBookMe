@@ -31,12 +31,14 @@
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                 <div class="book-box">
                 <h1>Esta seguro que desea borrar el libro:</h1>
-                <form action="{% url 'EliminarLibro' libro.id %}">{% csrf_token %}
-                    <h2 style="color: purple;"> {{libro.autor.nombre}} {{libro.autor.apellido}} <br>{{libro.titulo}}</h2>
-                        <button type="submit" class="read-more" style="display: inline-block; margin-right: 10px;" >
-                            <a href="{% url 'ListaLibros' %}">Confirmar</a>
-                        </button>
-                        <button class="read-more" style="display: inline-block;" >
+
+                <form action="{% url 'EliminarLibro' libro.id %}" method="post">{% csrf_token %}
+
+                    <h2 style="color: purple;"> {{libro.titulo}}</h2>
+
+                        <button type="submit" class="read-more" style="display: inline-block; margin-right: 10px;" >Confirmar</button>
+
+                        <button style="display: inline-block;" >
                             <a href="{% url 'ListaLibros' %}">Cancelar</a>
                         </button>
                 </form>

@@ -15,11 +15,11 @@ class Genero(models.Model):
     descripcion = models.TextField(blank=True)
 
     def __str__(self):
-        return f"{self.nombre}/n{self.descripcion}"
+        return self.nombre
 
 class Libro(models.Model):
     titulo = models.CharField(max_length=40, unique=True)
-    autor = models.ForeignKey(Autores, on_delete=models.CASCADE, related_name='libros')
+    autor = models.CharField(max_length=40)
     genero = models.ForeignKey(Genero, on_delete=models.CASCADE, related_name='libros')
     publicacion = models.IntegerField()
     sinopsis= models.TextField(default="Sin sinopsis")

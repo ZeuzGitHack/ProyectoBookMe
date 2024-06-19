@@ -33,11 +33,9 @@
          <h4>Resultados de la búsqueda:</h4>
          {% for libro in libros %}
          <ul>
-            <li style="font-size: 20px; color: purple;"><strong>{{ libro.titulo }}</strong></li>
-            <li style="font-size: 20px; color: purple;">{{ libro.autor }}</li>
-            <li style="font-size: 20px; color: purple;"><strong>{{ libro.genero.nombre }}</strong></li>
-            <li style="font-size: 20px; color: purple;">{{ libro.publicacion }}</li>
-            <li style="font-size: 20px; color: purple;"> - <br>{{ libro.sinopsis }}</li>
+            <a href="{% url 'DetalleLibro' libro.pk %}">
+               <li style="font-size: 20px; color: purple;"><strong>{{ libro.titulo }}</strong></li>
+            </a>
          {% endfor %}
          {% else %}
             <p style="font-size: 20px; color: red;">{{ mensaje }}</p>

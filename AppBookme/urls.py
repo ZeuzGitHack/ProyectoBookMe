@@ -10,7 +10,7 @@ urlpatterns = [
     path('detalle-libros/<pk>', LibrosDetalles.as_view(), name="DetalleLibro"),
     path('elimina-libros/<pk>', LibroEliminar.as_view(), name="EliminarLibro"),
     path('edita-libros/<pk>', LibroEditar.as_view(), name="EditarLibro"),
-    path('formulario-libros/', LibroFormulario.as_view(), name="FormularioLibro"),
+    path('formulario-libros/', libroFormulario, name="FormularioLibro"),
     path('busqueda-libro/', busquedaLibro, name = "BusquedaLibro"),
     path('busca-libros/', buscarLibro, name="BuscaLibros"),
     # Autores

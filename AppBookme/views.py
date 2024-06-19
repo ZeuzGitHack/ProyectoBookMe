@@ -4,6 +4,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from AppBookme.models import Autores, Genero, Libro, Editoriales, Reseñas
+from .forms import LibroFormulario, AutorFormulario, EditorialFormulario, Reseñas
 
 # Libros
 def inicio(req):
@@ -22,11 +23,20 @@ class LibrosDetalles(DetailView):
 	template_name = "detalle_libro.html"
 	context_object_name = "libro"
 
-class LibroFormulario(CreateView):
-	model = Libro
-	template_name = "formulario_libro.html"
-	success_url = reverse_lazy('ListaLibros')
-	fields = ['titulo', 'autor', 'genero', 'publicacion', 'sinopsis']
+def libroFormulario(req):
+
+	if req.method == 'POST':
+		miFormulario = LibroFormulario(req.POST)
+		if miFormulario.is_valid():
+			data = miFormulario.cleaned_data
+			nuevo_libro = Libro(titulo=data['titulo'], autor=data['autor'], genero=data['genero'], publicacion=data['publicacion'], sinopsis=data['sinopsis'])
+			nuevo_libro.save()
+			return render(req, "lista_libros.html", {"message": "Nuevo libro guardado con exito"})
+		else:
+			return render(req, "formulario_libro.html", {"message": "Datos inválidos"})
+	else:
+		miFormulario = LibroFormulario()
+		return render(req, "formulario_libro.html", {"miFormulario": miFormulario})
 
 class LibroEditar(UpdateView):
 	model = Libro
