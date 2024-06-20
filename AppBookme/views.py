@@ -5,6 +5,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from AppBookme.models import Autores, Genero, Libro, Editoriales, Reseñas
 from .forms import LibroFormulario, AutorFormulario, EditorialFormulario, Reseñas
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Libros
 def inicio(req):
@@ -23,6 +25,7 @@ class LibrosDetalles(DetailView):
 	template_name = "detalle_libro.html"
 	context_object_name = "libro"
 
+@login_required
 def libroFormulario(req):
 
 	if req.method == 'POST':

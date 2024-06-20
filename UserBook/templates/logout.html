@@ -1,0 +1,40 @@
+{% extends 'principal.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Libros Book-Me</title>
+{% endblock titulo %}
+
+{% include 'navbar.html' %}
+
+{% block BloqueQueCambia %}
+<div class="about-bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="abouttitle">
+               <h2>Saliendo...</h2>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="about">
+   <div class="container">
+      <div class="row border">
+         <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
+            <h3>Hasta luego...</h3>
+               </div>
+            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
+               <div class="about-box">
+                  <figure style="text-align: end;">
+                     <img src="{% static 'images/vuelva_prontos.jpg' %}" alt="img" />
+                  </figure>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock BloqueQueCambia %}

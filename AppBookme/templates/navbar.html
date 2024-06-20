@@ -3,7 +3,7 @@
 <!-- header inner -->
 <div class="header">
     <div class="container">
-            <div class="row">
+        <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
                 <div class="full">
                         <div class="center-desk">
@@ -11,28 +11,36 @@
                         </div>
                 </div>
             </div>
-            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+            <div>
                 <div class="menu-area">
-                        <div class="limit-box">
+                    <div class="limit-box">
                         <nav class="main-menu">
-                            <ul class="menu-area-main">
-                            <li style="margin-left: 10px; margin-right: 10px; color: aliceblue;">
-                                <a href="{% url 'Usuario' %}">
-                                    {{ mensaje }}
-                                </a>
-                            </li>
-                            <li> <a href="{% url 'Inicio' %}">Inicio</a> </li>
-                            <li> <a href="{% url 'AcercaDeMi' %}">Acerca de Mi</a> </li>
-                            <li><a href="{% url 'ListaLibros' %}">Libros</a></li>
-                            <li><a href="{% url 'ListaAutores' %}">Autores</a></li>
-                            <li><a href="{% url 'ListaGeneros' %}">Generos</a></li>
-                            <li class="mean-last"> <a href="{% url 'Login' %}"><img src="{% static 'images/top-icon.png' %}" alt="#" />  Login</a> </li>
+                            <ul>
+                                <li><a href="{% url 'Inicio' %}">Inicio</a></li>
+                                <li><a href="{% url 'AcercaDeMi' %}">Acerca de Mi</a></li>
+                                <li><a href="{% url 'ListaLibros' %}">Libros</a></li>
+                                <li><a href="{% url 'ListaAutores' %}">Autores</a></li>
+                                <li><a href="{% url 'ListaGeneros' %}">Generos</a></li>
+
+                                    {% if user.is_authenticated %}
+                                        <li style="margin-left: 30px; margin-right: 30px;"><p style="color: aliceblue;">Bienvenido <a href="{% url 'Usuario' %}">{{user.username}}</a></p></li>
+
+                                        <li style="margin-left: 30px; margin-right: 30px;">
+                                            <form method="post" action="{% url 'Logout' %}"> {% csrf_token %}
+                                                <button class="btn btn-primary" type="submit">Logout</button>
+                                            </form>
+                                        </li>
+                                    {% else %}
+                                        <li style="margin-left: 10px; margin-right: 10px;"><a style="float: left;" href="{% url 'Login' %}">Ingresar</a></li>
+                                        <li style="margin-left: 10px; margin-right: 10px;"><a style="float: left;" href="{% url 'Registro' %}">Registro</a></li>
+                                    {% endif %}
+
                             </ul>
                         </nav>
-                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
+        </div>
     </div>
 </div>
 <!-- end header inner -->

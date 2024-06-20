@@ -1,6 +1,7 @@
 from django import forms
 from .models import Libro, Editoriales, Genero, Reseñas
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
 
 class LibroFormulario(forms.Form):
@@ -37,3 +38,28 @@ class Reseñas(forms.Form):
         model = Reseñas
         fields = ['usuario', 'libro', 'comentario', 'fecha']
         unique_together = ['usuario', 'libro']
+
+class UserRegisterForm(UserCreationForm):
+	email = forms.EmailField()
+	password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+	password2 = forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
+	class Meta:
+		model = User
+		fields = ['username', 'email', 'password1', 'password2']
+		help_texts = {k:"" for k in fields}
+
+class UserEditForm(UserChangeForm):
+	password = forms.CharField(
+    help_text="",
+    widget=forms.HiddenInput(), required=False)
+	password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+	password2 = forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
+	class Meta:
+		model=User
+		fields = ["first_name", "last_name", "email"]
+	def clean_password2(self):
+		password1 = self.cleaned_data["password1"]
+		password2 = self.cleaned_data["password2"]
+		if password1 != password2:
+			raise forms.ValidationError("Las contraseñas deben ser iguales")
+		return password2
