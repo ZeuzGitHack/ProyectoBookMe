@@ -26,9 +26,9 @@
          <div class="col-md-10 offset-md-1">
             <div class="aboutheading">
                <span><h2>Bienvenido!!!</h2></span>
-               <span><h2>{{ user }}</h2></span>
+               <span><h2 style="font-size: 35px; color: crimson;">{{ username }}</h2></span>
                <span>{{ mensaje }}</span>
-               <span>{{ mensaje2 }}</span>
+               <span style="font-size: 35px; color: crimson;">{{ mensaje2 }}</span>
             </div>
          </div>
       </div>
@@ -43,7 +43,12 @@
          </div>
          <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
             <div class="about-box">
-               <figure><img src="{% static 'images/yo.jpg' %}" alt="img" /></figure>
+               {% if request.user.avatar %}
+                  <li><img src="{{request.user.avatar.imagen.url}}" alt="" height="40px"></li>    
+               {% endif %}
+               <button class="read-more"><a href="{% url 'EditarUsuario' %}">Editar Usuario</a></button>
+               <button class="read-more"><a href="{% url 'CambiarAvatar' %}">Cambiar Imagen de Perfil</a></button>
+               </div>
             </div>
          </div>
       </div>

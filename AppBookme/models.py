@@ -37,6 +37,13 @@ class Editoriales(models.Model):
     def __str__(self):
         return f"{self.nombre}-{self.pais}-{self.direccion}"
 
+class Avatar(models.Model):
+  user = models.OneToOneField(User, on_delete=models.CASCADE)
+  imagen = models.ImageField(upload_to='avatares', blank=True, null=True)
+  def __str__(self):
+    return f"{self.user} - {self.imagen}"
+
+
 class Reseñas(models.Model):
     usuario= models.ForeignKey(User, on_delete=models.CASCADE)
     libro = models.ForeignKey(Libro, on_delete=models.CASCADE, related_name='reseñas')

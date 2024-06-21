@@ -2,42 +2,47 @@
 {% load static %}
 <!-- header inner -->
 <div class="header">
-    <div class="container">
+    <div>
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+            <div>
                 <div class="full">
-                        <div class="center-desk">
-                        <div class="logo"> <a href="{% url 'Inicio' %}"><img src="{% static 'images/logo.png' %}" alt="#"></a> </div>
-                        </div>
+                    <div class="center-desk">
+                        <div class="logo"> 
+                            <li style="margin-left: 30px; margin-right: 15px;">
+                                <a href="{% url 'Inicio' %}"><img src="{% static 'images/logo.png' %}" alt="#">
+                            </li>
+                        </a> </div>
+                    </div>
                 </div>
             </div>
-            <div>
-                <div class="menu-area">
-                    <div class="limit-box">
-                        <nav class="main-menu">
-                            <ul>
-                                <li><a href="{% url 'Inicio' %}">Inicio</a></li>
-                                <li><a href="{% url 'AcercaDeMi' %}">Acerca de Mi</a></li>
-                                <li><a href="{% url 'ListaLibros' %}">Libros</a></li>
-                                <li><a href="{% url 'ListaAutores' %}">Autores</a></li>
-                                <li><a href="{% url 'ListaGeneros' %}">Generos</a></li>
+            <div class="menu-area">
+                <div class="limit-box">
+                    <nav class="main-menu">
+                        <ul>
+                            <li><a href="{% url 'Inicio' %}">Inicio</a></li>
+                            <li><a href="{% url 'AcercaDeMi' %}">Acerca de Mi</a></li>
+                            <li><a href="{% url 'ListaLibros' %}">Libros</a></li>
+                            <li><a href="{% url 'ListaAutores' %}">Autores</a></li>
+                            <li><a href="{% url 'ListaGeneros' %}">Generos</a></li>
 
-                                    {% if user.is_authenticated %}
-                                        <li style="margin-left: 30px; margin-right: 30px;"><p style="color: aliceblue;">Bienvenido <a href="{% url 'Usuario' %}">{{user.username}}</a></p></li>
-
-                                        <li style="margin-left: 30px; margin-right: 30px;">
-                                            <form method="post" action="{% url 'Logout' %}"> {% csrf_token %}
-                                                <button class="btn btn-primary" type="submit">Logout</button>
-                                            </form>
-                                        </li>
-                                    {% else %}
-                                        <li style="margin-left: 10px; margin-right: 10px;"><a style="float: left;" href="{% url 'Login' %}">Ingresar</a></li>
-                                        <li style="margin-left: 10px; margin-right: 10px;"><a style="float: left;" href="{% url 'Registro' %}">Registro</a></li>
+                                {% if user.is_authenticated %}
+                                    <li style="margin-left: 20px; margin-right: 20px;"><p style="color: aliceblue;">Bienvenido <a href="{% url 'Usuario' %}">{{user.username}}</a></p></li>
+                                    {% if request.user.avatar %}
+                                        <li><img src="{{request.user.avatar.imagen.url}}" alt="" style="width: 90px; height: 100px;"></li>    
                                     {% endif %}
 
-                            </ul>
-                        </nav>
-                    </div>
+                                    <li style="margin-left: 20px; margin-right: 20px;">
+                                        <form method="post" action="{% url 'Logout' %}"> {% csrf_token %}
+                                            <button class="btn btn-primary" type="submit">Logout</button>
+                                        </form>
+                                    </li>
+                                {% else %}
+                                    <li style="margin-left: 10px; margin-right: 10px;"><a style="float: left;" href="{% url 'Login' %}">Ingresar</a></li>
+                                    <li style="margin-left: 10px; margin-right: 10px;"><a style="float: left;" href="{% url 'Registro' %}">Registro</a></li>
+                                {% endif %}
+                                                                
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>

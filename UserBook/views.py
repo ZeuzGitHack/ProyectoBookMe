@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
-from AppBookme.forms import UserRegisterForm, UserEditForm
+from AppBookme.forms import UserRegisterForm, UserEditForm, AvatarFormulario
+from AppBookme.models import Avatar
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 
@@ -38,30 +40,53 @@ def registro(req):
     if req.method == 'POST':
         miFormulario = UserRegisterForm(req.POST)
         if miFormulario.is_valid():
-            username=miFormulario.cleaned_data
+            data = miFormulario.cleaned_data
+            usuario = data["username"]
             miFormulario.save()
-            return render(req, "usuario.html", {"username":username, "mensaje":f"Usuario {username} creado con exito"})
+            return render(req, "usuario.html", {"username":usuario, "mensaje":f"Usuario '{usuario}' creado con exito"})
         else:
             return render(req, "registro.html", {"mensaje":"Datos invalidas"})
     else:
         miFormulario = UserRegisterForm()
         return render(req, "registro.html", {"miFirmulario":miFormulario})
 
-@login_required
 def editar_usuario(req):
-    usuario = req.user
-    if req.method == 'POST':
-        miFormulario = UserEditForm(req.POST, instance=req.user)
-        if miFormulario.is_valid():
-            data = miFormulario.cleaned_data
-            usuario.first_name = data["first_name"]
-            usuario.last_name = data["last_name"]
-            usuario.email = data["email"]
-            usuario.set_password(data["password1"])
-            usuario.save()
-            return render(req, "usuario.html", {"mensaje2": "Datos actualizado con éxito"})
-        else:
-            return render(req, "editar_usuario.html", {"miFormulario": miFormulario})
+  usuario = req.user
+  if req.method == 'POST':
+    formUsuario = UserEditForm(req.POST, instance=req.user)
+    if formUsuario.is_valid():
+      data = formUsuario.cleaned_data
+      usuario.username = data["username"]
+      usuario.first_name = data["first_name"]
+      usuario.last_name = data["last_name"]
+      usuario.email = data["email"]
+      usuario.set_password(data["password1"])
+      usuario.save()
+      return render(req, "usuario.html", {
+            "mensaje2": "Datos actualizados con éxito",
+            'username': usuario.username,
+            'email': usuario.email,
+            'nombre': usuario.first_name,
+            'apellido': usuario.last_name})
     else:
-        miFormulario = UserEditForm(instance=req.user)
-        return render(req, "editar_usuario.html", {"miFormulario": miFormulario})
+      formUsuario = UserEditForm(instance=req.user)
+      return render(req, "editar_usuario.html", {"mensaje" : "Datos erroneos, intente nuevamente","formUsuario": formUsuario})
+  else:
+    formUsuario = UserEditForm(instance=req.user)
+    return render(req, "editar_usuario.html", {"formUsuario": formUsuario})
+
+
+def cambiar_avatar(req):
+  if req.method == 'POST':
+    formAvatar = AvatarFormulario(req.POST, req.FILES)
+    if formAvatar.is_valid():
+      data = formAvatar.cleaned_data
+      avatar = Avatar(user=req.user, imagen=data["imagen"])
+      avatar.save()
+      return render(req, "inicio.html", {"message": "Avatar cargado con éxito"})
+    else:
+      return render(req, "inicio.html", {"message": "Datos inválidos"})
+  else:
+    formAvatar = AvatarFormulario()
+    return render(req, "agregar_avatar.html", {"formAvatar": formAvatar})
+

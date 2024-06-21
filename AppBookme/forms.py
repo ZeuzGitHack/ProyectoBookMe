@@ -1,5 +1,5 @@
 from django import forms
-from .models import Libro, Editoriales, Genero, Reseñas
+from .models import Libro, Editoriales, Genero, Reseñas, Avatar
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
@@ -56,10 +56,16 @@ class UserEditForm(UserChangeForm):
 	password2 = forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
 	class Meta:
 		model=User
-		fields = ["first_name", "last_name", "email"]
+		fields = ["username", "first_name", "last_name", "email"]
 	def clean_password2(self):
 		password1 = self.cleaned_data["password1"]
 		password2 = self.cleaned_data["password2"]
 		if password1 != password2:
 			raise forms.ValidationError("Las contraseñas deben ser iguales")
 		return password2
+
+class AvatarFormulario(forms.ModelForm):
+
+  class Meta:
+    model=Avatar
+    fields=('imagen',)
