@@ -50,6 +50,7 @@ def registro(req):
         miFormulario = UserRegisterForm()
         return render(req, "registro.html", {"miFirmulario":miFormulario})
 
+@login_required
 def editar_usuario(req):
   usuario = req.user
   if req.method == 'POST':
@@ -75,18 +76,39 @@ def editar_usuario(req):
     formUsuario = UserEditForm(instance=req.user)
     return render(req, "editar_usuario.html", {"formUsuario": formUsuario})
 
-
-def cambiar_avatar(req):
+@login_required
+def agregar_avatar(req):
+  usuario = req.user
   if req.method == 'POST':
-    formAvatar = AvatarFormulario(req.POST, req.FILES)
-    if formAvatar.is_valid():
-      data = formAvatar.cleaned_data
+    avatarForm = AvatarFormulario(req.POST, req.FILES)
+    if avatarForm.is_valid():
+      data = avatarForm.cleaned_data
       avatar = Avatar(user=req.user, imagen=data["imagen"])
       avatar.save()
-      return render(req, "inicio.html", {"message": "Avatar cargado con éxito"})
+      return render(req, "usuario.html", {"mensaje": "Avatar cargado con éxito",'username': usuario.username, 'email': usuario.email, 'nombre': usuario.first_name, 'apellido': usuario.last_name})    
     else:
-      return render(req, "inicio.html", {"message": "Datos inválidos"})
+      return render(req, "inicio.html", {"mensaje": "Datos inválidos"}) 
   else:
-    formAvatar = AvatarFormulario()
-    return render(req, "agregar_avatar.html", {"formAvatar": formAvatar})
+    avatarForm = AvatarFormulario()
+    return render(req, "agregar_avatar.html", {"avatarForm": avatarForm})
 
+@login_required
+def cambiar_avatar(req):
+    usuario = req.user
+    if req.method == 'POST':
+        formAvatar = AvatarFormulario(req.POST, req.FILES)
+        if formAvatar.is_valid():
+            data = formAvatar.cleaned_data
+            user = req.user
+            avatar = Avatar.objects.filter(user=user).first()
+            if avatar:
+                avatar.imagen = data["imagen"]
+            else:
+                avatar = Avatar(user=user, imagen=data["imagen"])
+            avatar.save()
+            return render(req, "usuario.html", {"mensaje": "Avatar modificado con éxito",'username': usuario.username, 'email': usuario.email, 'nombre': usuario.first_name, 'apellido': usuario.last_name})
+        else:
+            return render(req, "inicio.html", {"message": "Datos inválidos"})
+    else:
+        formAvatar = AvatarFormulario()
+        return render(req, "cambiar_avatar.html", {"formAvatar": formAvatar})

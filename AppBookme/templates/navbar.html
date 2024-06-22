@@ -28,7 +28,7 @@
                                 {% if user.is_authenticated %}
                                     <li style="margin-left: 20px; margin-right: 20px;"><p style="color: aliceblue;">Bienvenido <a href="{% url 'Usuario' %}">{{user.username}}</a></p></li>
                                     {% if request.user.avatar %}
-                                        <li><img src="{{request.user.avatar.imagen.url}}" alt="" style="width: 90px; height: 100px;"></li>    
+                                        <li><img src="{{request.user.avatar.imagen.url}}" alt="" style="width: 90px; height: 100px; border-radius: 50%;"></li>    
                                     {% endif %}
 
                                     <li style="margin-left: 20px; margin-right: 20px;">

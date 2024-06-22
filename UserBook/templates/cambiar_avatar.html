@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>Registro Book-Me</title>
+<title>Imagen Book-Me</title>
 {% endblock titulo %}
 
 {% include 'navbar.html' %}
@@ -14,7 +14,8 @@
       <div class="row">
          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div class="abouttitle">
-               <h2>Registrate</h2>
+               <h2>Modificando imagen de perfil:</h2>
+               <h2>{{ usuario }}</h2>
             </div>
          </div>
       </div>
@@ -27,16 +28,14 @@
          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div class="row">
                <span>{{ mensaje }}</span>
+               <form action="{% url 'CambiarAvatar' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
 
-               <form action="{% url 'Registro' %}" method="POST">{% csrf_token %}
+                  <table>
+                     {{ formAvatar.as_p }}
+                  </table>
 
-                  {{ miFirmulario.as_p }}
-                  
-                  {{ avatar_form.as_p }}
-                  
-                  <button type="submit" class="send-btn">Registrate!</button>
+                  <button type="submit" class="send-btn">Actualizar</button>
                </form>
-
             </div>
          </div>
       </div>

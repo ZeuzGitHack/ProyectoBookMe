@@ -31,7 +31,7 @@
                <form action="{% url 'AgregarAvatar' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
 
                   <table>
-                     {{ formAvatar.as_p }}
+                     {{ avatarForm.as_p }}
                   </table>
 
                   <button type="submit" class="send-btn">Actualizar</button>

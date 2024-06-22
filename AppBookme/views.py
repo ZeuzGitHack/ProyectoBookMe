@@ -27,6 +27,7 @@ class LibrosDetalles(DetailView):
 	context_object_name = "libro"
 
 @login_required
+@staff_member_required(login_url="/AppBookme/")
 def libroFormulario(req):
 
 	if req.method == 'POST':
@@ -42,13 +43,13 @@ def libroFormulario(req):
 		miFormulario = LibroFormulario()
 		return render(req, "formulario_libro.html", {"miFormulario": miFormulario})
 
-class LibroEditar(UpdateView):
+class LibroEditar(LoginRequiredMixin, UpdateView):
 	model = Libro
 	template_name = "editar_libro.html"
 	success_url = reverse_lazy('ListaLibros')
 	fields = ['titulo', 'autor', 'genero', 'publicacion', 'sinopsis']
 
-class LibroEliminar(DeleteView):
+class LibroEliminar(LoginRequiredMixin, DeleteView):
 	model = Libro
 	template_name = "eliminar_libro.html"
 	success_url = reverse_lazy('ListaLibros')
@@ -79,6 +80,8 @@ class AutoresDetalles(DetailView):
 	template_name = "detalle_autores.html"
 	context_object_name = "autor"
 
+@login_required
+@staff_member_required(login_url="/AppBookme/")
 def autorFormulario(req):
 
 	if req.method == 'POST':
@@ -94,14 +97,14 @@ def autorFormulario(req):
 		miFormulario = AutorFormulario()
 		return render(req, "formulario_autores.html", {"miFormulario": miFormulario})
 
-class AutoresEditar(UpdateView):
+class AutoresEditar(LoginRequiredMixin, UpdateView):
 	model = Autores
 	template_name = "editar_autores.html"
 	success_url = reverse_lazy('ListaAutores')
 	fields = ['nombre', 'apellido', 'nacionalidad']
 	context_object_name = "autor"
 
-class AutoresEliminar(DeleteView):
+class AutoresEliminar(LoginRequiredMixin, DeleteView):
 	model = Autores
 	template_name = "eliminar_autor.html"
 	success_url = reverse_lazy('ListaAutores')
@@ -133,13 +136,13 @@ class GenerosDetalles(DetailView):
 	template_name = "detalle_genero.html"
 	context_object_name = "genero"
 
-class GenerosEditar(UpdateView):
+class GenerosEditar(LoginRequiredMixin, UpdateView):
 	model = Genero
 	template_name = "editar_genero.html"
 	success_url = reverse_lazy('ListaGeneros')
 	fields = ['nombre', 'descripcion']
 
-class GenerosEliminar(DeleteView):
+class GenerosEliminar(LoginRequiredMixin, DeleteView):
 	model = Genero
 	template_name = "eliminar_genero.html"
 	success_url = reverse_lazy('ListaGeneros')
@@ -156,13 +159,13 @@ class EditorialesDetalles(DetailView):
 	template_name = "detalle_editoriales.html"
 	context_object_name = "editorial"
 
-class EditorialesEditar(UpdateView):
+class EditorialesEditar(LoginRequiredMixin, UpdateView):
 	model = Editoriales
 	template_name = "editar_editorial.html"
 	success_url = reverse_lazy('ListaEditoriales')
 	fields = ['nombre', 'pais', 'direccion', 'libros']
 
-class EditorialesEliminar(DeleteView):
+class EditorialesEliminar(LoginRequiredMixin, DeleteView):
 	model = Editoriales
 	template_name = "eliminar_editorial.html"
 	success_url = reverse_lazy('ListaEditoriales')

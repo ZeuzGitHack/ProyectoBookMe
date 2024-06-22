@@ -44,7 +44,7 @@
          <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
             <div class="about-box">
                {% if request.user.avatar %}
-                  <li><img src="{{request.user.avatar.imagen.url}}" alt="" height="40px"></li>    
+                  <li><img src="{{request.user.avatar.imagen.url}}" alt="" height="40px" style="border-radius: 20px; border: 5px solid purple;"></li>    
                {% endif %}
                <button class="read-more"><a href="{% url 'EditarUsuario' %}">Editar Usuario</a></button>
                <button class="read-more"><a href="{% url 'CambiarAvatar' %}">Cambiar Imagen de Perfil</a></button>

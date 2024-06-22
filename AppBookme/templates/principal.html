@@ -103,7 +103,7 @@
             </div>
             <div style="width: 250px; margin: 0 10px; text-align: center;">
                <div class="card">
-                  <img src="{% static '/images/b2.jpg' %}" class="card-img-top" alt="...">
+                  <img src="{% static '/images/libros.jpg' %}" class="card-img-top" alt="...">
                   <div class="card-body">
                         <h4 class="card-title">Autores</h4>
                         <p class="card-text">Informacion y sus obras <br><br></p>
@@ -136,25 +136,25 @@
                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
                   <div class="book-box">
                      <h2><strong class="black">Ciencia Ficción </strong></h2>
-                     <figure><a href=""><img style="width: 150px; height: 150px;" src="{% static 'images/cat2.png' %}" alt="img"/></a></figure>
+                     <figure><a href="{% url 'DetalleGeneros' 9 %}"><img style="width: 150px; height: 150px;" src="{% static 'images/cat2.png' %}" alt="img"/></a></figure>
                   </div>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
                   <div class="book-box">
                      <h2><strong class="black">Fantasia </strong></h2>
-                     <figure><a href=""><img style="width: 150px; height: 150px;" src="{% static 'images/cat6.png' %}" alt="img"/></a></figure>
+                     <figure><a href="{% url 'DetalleGeneros' 4 %}"><img style="width: 150px; height: 150px;" src="{% static 'images/cat6.png' %}" alt="img"/></a></figure>
                   </div>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
                   <div class="book-box">
                      <h2><strong class="black">Romanse y Drama </strong></h2>
-                     <figure><a href=""><img style="width: 150px; height: 150px;" src="{% static 'images/cat4.png' %}" alt="img"/></a></figure>
+                     <figure><a href="{% url 'DetalleGeneros' 7 %}"><img style="width: 150px; height: 150px;" src="{% static 'images/cat4.png' %}" alt="img"/></a></figure>
                   </div>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
                   <div class="book-box">
                      <h2><strong class="black">Misterio y Suspenso </strong></h2>
-                     <figure><a href=""><img style="width: 150px; height: 150px;" src="{% static 'images/cat1.png' %}" alt="img"/></a></figure>
+                     <figure><a href="{% url 'DetalleGeneros' 1 %}"><img style="width: 150px; height: 150px;" src="{% static 'images/cat1.png' %}" alt="img"/></a></figure>
                   </div>
                </div>
             </div>
