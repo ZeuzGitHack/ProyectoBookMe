@@ -40,9 +40,20 @@
                   <ul>
                      <li>
                         <img style="height: 50px; right: 50px;" src="{% static '/images/cat1.png' %}" alt="...">
-                        <p style="font-size: 25px; color: purple;">{{ genero.nombre }}</p>
+                        <p style="font-size: 35px; color: purple;"><strong>{{ genero.nombre }}</strong></p>
                         <p style="font-size: 25px; color: purple;">{{ genero.descripcion }}</p>
                      </li>
+                  </ul>
+                  <h2><strong>Libros del genero en la plataforma</strong></h2>
+                  <ul>
+                     
+                     {% for libro in libros %}
+                     <li>
+                        <p style="font-size: 25px; color: purple;"><a href="{% url 'DetalleLibro' libro.pk %}">{{ libro.titulo }} - {{ libro.autor }}</a></p>
+                     </li>
+                        
+                     {% endfor %}
+                        
                   </ul>
             </div>
          </div>

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Libro, Editoriales, Genero, Reseñas, Avatar
+from .models import Libro, Editoriales, Genero, Reseñas, Avatar, Autores
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
@@ -14,16 +14,16 @@ class LibroFormulario(forms.Form):
 		model = Libro
 		fields = ['titulo', 'autor', 'genero', 'publicacion', 'sinopsis']
 
-class AutorFormulario(forms.Form):
-	nombre= forms.CharField()
-	apellido= forms.CharField()
-	nacionalidad= forms.CharField()
+class AutorFormulario(forms.ModelForm):
+	class Meta:
+		model= Autores
+		fields=['nombre', 'apellido', 'nacionalidad']
 
 class EditorialFormulario(forms.Form):
 	nombre= forms.CharField()
 	pais= forms.CharField()
 	direccion= forms.CharField()
-	email=forms.EmailField()
+	contacto=forms.EmailField()
 	libros = forms.ModelChoiceField(queryset=Libro.objects.all(), required=False)
 	class Meta:
 		model = Editoriales
@@ -33,7 +33,6 @@ class ReseñasForm(forms.ModelForm):
 	class Meta:
 		model = Reseñas
 		fields=['comentario', 'calificacion']
-
 
 class UserRegisterForm(UserCreationForm):
 	email = forms.EmailField()

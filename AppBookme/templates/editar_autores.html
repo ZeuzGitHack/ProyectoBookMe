@@ -26,9 +26,9 @@
          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div style="display: block;" class="row">
                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                  <form action="{% url 'EditarAutores' autor.pk %}" method="POST">{% csrf_token %}
+                  <form action="{% url 'EditarAutores' id %}" method="POST">{% csrf_token %}
                      <table>
-                        {{form.as_p}}
+                        {{autorForm.as_p}}
                      </table>
                      <div>
                         <button class="send-btn">Actualizar</button> 

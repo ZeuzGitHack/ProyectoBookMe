@@ -9,6 +9,20 @@
 {% include 'navbar.html' %}
 
 {% block BloqueQueCambia %}
+
+<style>
+        .contenedor {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .recuadro {
+            border-radius: 20px; border: 5px solid purple;
+            padding: 5px;
+            width: 200px;
+        }
+</style>
+
 <div class="about-bg">
    <div class="container">
       <div class="row">
@@ -46,6 +60,18 @@
                      <p style="font-size: 25px; color: purple; font-style: italic">{{ libro.sinopsis }}</p>
                   </ul>
                </figure>
+               <h2>Reseñas</h2>
+               {% for reseña in reseñas %}
+               <div style="border-radius: 20px; border: 5px solid purple;">
+                  <p>
+                     <strong>Usuaro:</strong> {{reseña.usuario.username}}<br>
+                     <strong>Fecha de la reseña:</strong> {{reseña.fecha}}<br>
+                     <strong>Calificacion:</strong> {{reseña.calificacion}}<br>
+                     Reseña: <br><strong style="color: blueviolet;">"{{reseña.comentario}}" </strong> 
+                  </p>
+               </div>
+                  {% endfor %}
+
             </div>
          </div>
          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
@@ -53,23 +79,11 @@
                <figure><img src="{% static 'images/book-1.jpg' %}" alt="img"/></figure>
             </div>
             <div>
-               <button class="send-btn"><a href="{% url 'Reseña' libro.id %}">Reseña Libro</a></button>
-               <h2>Reseñas</h2>
-               
-               
-               
+               <button class="read-more"><a href="{% url 'Reseña' libro.id %}">Hacer reseña</a></button>
             </div>
          </div>
       </div>
    </div>
 </div>
-<table>
-   {% for reseña in reseñas %}
-      <p><strong>{{reseña.usuario.username}}</strong></p>
-      <p><strong>{{reseña.fecha}}</strong></p>
-      <p><strong>Calificacion: {{reseña.calificacion}}</strong></p>
-      <p>{{reseña.comentario}}</p> 
-   {% endfor %}
-</table>
 <!-- end Books -->
 {% endblock BloqueQueCambia %}

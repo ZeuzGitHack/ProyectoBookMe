@@ -26,6 +26,8 @@
          <div class="col-md-10 offset-md-1">
             <div class="aboutheading">
                <h2>Lista de Autores</h2>
+               <h3 style="color: green;">{{ mensaje }}</h3>
+               <h3 style="color: red;">{{ mensaje2 }}</h3>
             </div>
          </div>
       </div>
@@ -35,19 +37,19 @@
       <div class="row border">
          <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
                <ul> 
-                  {% for aut in autor %}
+                  {% for autor in autores %}
                      <li>
-                        <a href="{% url 'DetalleAutores' aut.pk %}" style="font-size: 20px; color: purple; display: inline-block;">
-                        {{ aut.nombre }} {{ aut.apellido }} - {{ aut.nacionalidad }}
+                        <a href="{% url 'DetalleAutores' autor.pk %}" style="font-size: 20px; color: purple; display: inline-block;">
+                        {{ autor.nombre }} {{ autor.apellido }} - {{ autor.nacionalidad }}
                         </a>
                         
-                        {% if user.is_authenticated %}                           
-                        <button style="display: inline-block; margin: 20px;">
-                           <a href="{% url 'EliminarAutores' aut.pk %}">Eliminar</a>
-                        </button>
-                        <button style="display: inline-block; margin: 20px;">
-                           <a href="{% url 'EditarAutores' aut.pk %}">Editar</a>
-                        </button>
+                        {% if user.is_authenticated %}   
+                        <form action="{% url 'EliminarAutores' autor.id %}" method="post">{% csrf_token %}
+                           <button type="submit"> Eliminar </button>
+                         </form>
+                         <button>
+                           <a href="{% url 'EditarAutores' autor.id %}"> Editar </a>
+                         </button>
                         {% endif %}
                      </li>
                   {%endfor%}

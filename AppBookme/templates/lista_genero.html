@@ -26,6 +26,8 @@
          <div class="col-md-10 offset-md-1">
             <div class="aboutheading">
                <h2>Generos Literarios</h2>
+               <h3 style="color: green;">{{ mensaje }}</h3>
+               <h3 style="color: red;">{{ mensaje2 }}</h3>
             </div>
          </div>
       </div>
@@ -37,16 +39,6 @@
                         <a href="{% url 'DetalleGeneros' genero.pk %}" style="font-size: 20px; color: purple; display: inline-block;">
                         {{ genero.nombre }}
                         </a>
-                        
-                        {% if user.is_authenticated %}                           
-                        <button style="display: inline-block; margin: 20px;">
-                           <a href="{% url 'EliminarGeneros' genero.pk %}">Eliminar</a>
-                        </button>
-                        <button style="display: inline-block; margin: 20px;">
-                           <a href="{% url 'EditarGeneros' genero.pk %}">Editar</a>
-                        </button>
-                        {% endif %}
-                           
                      </li>
                   {%endfor%}
                </ul>
