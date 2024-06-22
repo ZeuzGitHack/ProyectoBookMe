@@ -2,12 +2,13 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from AppBookme.models import Autores, Genero, Libro, Editoriales, Reseñas
-from .forms import LibroFormulario, AutorFormulario, EditorialFormulario, Reseñas
+from .forms import LibroFormulario, AutorFormulario, ReseñasForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.views.decorators import staff_member_required
+
 
 # Libros
 def inicio(req):
@@ -20,14 +21,18 @@ class LibrosLista(ListView):
 	model = Libro
 	template_name = "lista_libros.html"
 	context_object_name = "libros"
+	ordering="titulo"
 
 class LibrosDetalles(DetailView):
 	model = Libro
 	template_name = "detalle_libro.html"
 	context_object_name = "libro"
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['reseñas'] = Reseñas.objects.filter(libro=self.object)
+		return context
 
 @login_required
-@staff_member_required(login_url="/AppBookme/")
 def libroFormulario(req):
 
 	if req.method == 'POST':
@@ -81,7 +86,6 @@ class AutoresDetalles(DetailView):
 	context_object_name = "autor"
 
 @login_required
-@staff_member_required(login_url="/AppBookme/")
 def autorFormulario(req):
 
 	if req.method == 'POST':
@@ -172,19 +176,20 @@ class EditorialesEliminar(LoginRequiredMixin, DeleteView):
 
 #Reseñas
 
-class ReseñasFormulario(CreateView):
-	model = Reseñas
-	template_name = "crear_reseña.html"
-	success_url = reverse_lazy('ListaLibros')
-	fields = ['usuario', 'libro', 'comentario', 'fecha']
+def reseña_libro(req, libro_id):
+	try:
+		libro=Libro.objects.get(id=libro_id)
+	except libro.DoesNotExist:
+		render(req, "inicio.html, {}")
+	if req.method == 'POST':
+		formResena = ReseñasForm(req.POST)
+		if formResena.is_valid():
+			reseña = formResena.save(commit=False)
+			reseña.libro = libro
+			reseña.usuario = req.user
+			reseña.save()
+			return render(req, "detalle_libro.html", {"libro":libro})
+	else:
+		formResena = ReseñasForm()
+		return render(req, "reseña.html", {"formResena":formResena, "libro":libro})
 
-class ReseñasEditar(UpdateView):
-	model = Reseñas
-	template_name = "editar_editorial.html"
-	success_url = reverse_lazy('ListaLibros')
-	fields = ['usuario', 'libro', 'comentario', 'fecha']
-
-class ReseñasEliminar(DeleteView):
-	model = Reseñas
-	template_name = "eliminar_reseña.html"#'EliminarReseñas'<id>
-	success_url = reverse_lazy('ListaLibros')

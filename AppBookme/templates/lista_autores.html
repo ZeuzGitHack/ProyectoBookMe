@@ -40,12 +40,15 @@
                         <a href="{% url 'DetalleAutores' aut.pk %}" style="font-size: 20px; color: purple; display: inline-block;">
                         {{ aut.nombre }} {{ aut.apellido }} - {{ aut.nacionalidad }}
                         </a>
+                        
+                        {% if user.is_authenticated %}                           
                         <button style="display: inline-block; margin: 20px;">
                            <a href="{% url 'EliminarAutores' aut.pk %}">Eliminar</a>
                         </button>
                         <button style="display: inline-block; margin: 20px;">
                            <a href="{% url 'EditarAutores' aut.pk %}">Editar</a>
                         </button>
+                        {% endif %}
                      </li>
                   {%endfor%}
                </ul>
@@ -55,7 +58,11 @@
                <figure style="text-align: end;">
                   <img src="{% static 'images/about.png' %}" alt="img" />
                </figure>
+               
+               {% if user.is_authenticated %}
                <button class="read-more"><a href="{% url 'FormularioAutores' %}">Agregar nuevo Autor</a></button>
+               {% endif %}
+                  
             </div>
          </div>
       </div>

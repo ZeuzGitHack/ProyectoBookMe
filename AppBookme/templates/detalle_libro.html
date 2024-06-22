@@ -52,9 +52,24 @@
             <div class="book-box">
                <figure><img src="{% static 'images/book-1.jpg' %}" alt="img"/></figure>
             </div>
+            <div>
+               <button class="send-btn"><a href="{% url 'Reseña' libro.id %}">Reseña Libro</a></button>
+               <h2>Reseñas</h2>
+               
+               
+               
+            </div>
          </div>
       </div>
    </div>
 </div>
+<table>
+   {% for reseña in reseñas %}
+      <p><strong>{{reseña.usuario.username}}</strong></p>
+      <p><strong>{{reseña.fecha}}</strong></p>
+      <p><strong>Calificacion: {{reseña.calificacion}}</strong></p>
+      <p>{{reseña.comentario}}</p> 
+   {% endfor %}
+</table>
 <!-- end Books -->
 {% endblock BloqueQueCambia %}

@@ -42,27 +42,32 @@
       {% include 'navbar.html' %}
       
       {% block BloqueQueCambia %}
-         
+      <style>
+         .sombras {
+             text-shadow: 2px 2px 4px rgba(0,0,0,0.5),
+                          -2px -2px 4px rgba(182, 2, 128, 0.5);
+         }
+     </style>
       <section class="slider_section">
          <div id="myCarousel" class="carousel slide banner-main" data-ride="carousel">
             <div class="carousel-inner">
                <div class="carousel-item active">
-                  <img class="first-slide" src="{% static 'images/banner.jpg' %}" alt="First slide">
+                  <img class="first-slide" src="{% static 'images/banner2.jpg' %}" alt="First slide">
                   <div class="container">
                      <div class="carousel-caption relative">
                         <h1>Web sobre libros<br> Para amantes de libros<br> Bienvenidos!!!</h1>
-                        <p>Los libros son como puertas hacia mundos desconocidos,<br> donde los amantes de la lectura encuentran refugio <br> y se pierden en las historias que los transportan a lugares inimaginables.</p>
-                        <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
+                        <p class = "sombras" style="color: black;"><strong>Los libros son como puertas hacia mundos desconocidos,<br> donde los amantes de la lectura encuentran refugio <br> y se pierden en las historias que los transportan a lugares inimaginables.</strong></p>
+                        <div class="button_section"> <a class="main_bt" href="{% url 'ListaLibros' %}">Libros</a>  </div>
                      </div>
                   </div>
                </div>
                <div class="carousel-item">
-                  <img class="second-slide" src="{% static 'images/banner.jpg' %}" alt="Second slide">
+                  <img class="second-slide" src="{% static 'images/banner3.jpg' %}" alt="Second slide">
                   <div class="container">
                      <div class="carousel-caption relative">
-                        <h1>Web sobre libros<br> Para amantes de libros<br> Bienvenodo!</h1>
-                        <p>Los libros son como puertas hacia mundos desconocidos,<br> donde los amantes de la lectura encuentran refugio <br> y se pierden en las historias que los transportan a lugares inimaginables.</p>
-                        <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
+                        <h1>Comunidad de lectores<br> para descubrimiento y <br>crecimiento conjunto</h1>
+                        <p class = "sombras" style="color: black;"><strong>Para un amante de los libros, <br>cada lectura es un viaje hacia lo desconocido <br>y una exploración de infinitas posibilidades.</strong></p>
+                        <div class="button_section"> <a class="main_bt" href="{% url 'ListaGeneros' %}">Generos</a>  </div>
                      </div>
                   </div>
                </div>
@@ -70,9 +75,9 @@
                   <img class="third-slide" src="{% static 'images/banner.jpg' %}" alt="Third slide">
                   <div class="container">
                      <div class="carousel-caption relative">
-                        <h1>Web sobre libros<br> Para amantes de libros<br> Bienvenodo!</h1>
-                        <p>Los libros son como puertas hacia mundos desconocidos,<br> donde los amantes de la lectura encuentran refugio <br> y se pierden en las historias que los transportan a lugares inimaginables.</p>
-                        <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
+                        <h1>Donde la pasión por los libros <br>se comparte creando un ambiente <br>de aprendizaje continuo</h1>
+                        <p class = "sombras" style="color: black;"><strong>Cada ejemplar es más que un simple objeto, <br>es un tesoro que guarda secretos y conocimientos, <br>un compañero fiel que nunca falla y que siempre está listo <br>para abrir las puertas de la imaginación.</strong></p>
+                        <div class="button_section"> <a class="main_bt" href="{% url 'ListaAutores' %}">Autores</a>  </div>
                      </div>
                   </div>
                </div>

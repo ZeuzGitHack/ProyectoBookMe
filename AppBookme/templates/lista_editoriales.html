@@ -37,12 +37,16 @@
                         <a href="{% url 'DetalleEditoriales' editorial.pk %}" style="font-size: 20px; color: purple; display: inline-block;">
                            {{ editorial.nombre }}
                         </a>
+                        
+                        {% if user.is_authenticated %}                           
                         <button style="display: inline-block; margin: 20px;">
                            <a href="{% url 'EliminarEditoriales' editorial.pk %}">Eliminar</a>
                         </button>
                         <button style="display: inline-block; margin: 20px;">
                            <a href="{% url 'EditarEditoriales' editorial.pk %}">Editar</a>
                         </button>
+                        {% endif %}
+                           
                      </li>
                   {%endfor%}
                </ul>

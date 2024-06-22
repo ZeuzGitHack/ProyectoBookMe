@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from datetime import datetime
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
@@ -6,6 +7,7 @@ from AppBookme.forms import UserRegisterForm, UserEditForm, AvatarFormulario
 from AppBookme.models import Avatar
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 def login_view(req):
@@ -30,9 +32,10 @@ def login_view(req):
 
 @login_required
 def usuario_view(req):
+    fecha_hora= datetime.now()
     if req.user.is_authenticated:
         user = req.user
-        return render(req, "usuario.html", {'username': user.username,'email': user.email, 'nombre':user.first_name, 'apellido':user.last_name})
+        return render(req, "usuario.html", {'username': user.username,'email': user.email, 'nombre':user.first_name, 'apellido':user.last_name, "fecha_hora":fecha_hora })
     else:
         return req("login.html", {})
 

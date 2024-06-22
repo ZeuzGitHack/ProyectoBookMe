@@ -30,4 +30,5 @@ urlpatterns = [
     path('detalle-editoriales/<pk>', EditorialesDetalles.as_view(), name="DetalleEditoriales"),
     path('elimina-editoriales/<pk>', EditorialesEliminar.as_view(), name="EliminarEditoriales"),
     path('edita-editoriales/<pk>', EditorialesEditar.as_view(), name="EditarEditoriales"),
+    path('detalle-libros/<int:libro_id>/reseña/', reseña_libro, name="Reseña"),
 ]

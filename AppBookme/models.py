@@ -43,13 +43,14 @@ class Avatar(models.Model):
   def __str__(self):
     return f"{self.user} - {self.imagen}"
 
-
 class Reseñas(models.Model):
-    usuario= models.ForeignKey(User, on_delete=models.CASCADE)
     libro = models.ForeignKey(Libro, on_delete=models.CASCADE, related_name='reseñas')
+    usuario= models.ForeignKey(User, on_delete=models.CASCADE)
     comentario = models.TextField()
-    fecha = models.DateTimeField()
-
+    calificacion = models.PositiveIntegerField(default=0)
+    fecha = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"{self.usuario.username}-{self.libro.titulo}"
     class Meta:
         unique_together = ['usuario', 'libro']
 

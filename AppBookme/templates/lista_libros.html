@@ -40,12 +40,16 @@
                         <a href="{% url 'DetalleLibro' libro.pk %}" style="font-size: 20px; color: purple; display: inline-block;">
                         {{ libro.titulo }} - {{ libro.autor.nombre }} {{ libro.autor.apellido }}
                         </a>
+                        
+                        {% if user.is_authenticated %}                           
                         <button style="display: inline-block; margin: 20px;">
                            <a href="{% url 'EliminarLibro' libro.pk %}">Eliminar</a>
                         </button>
                         <button style="display: inline-block; margin: 20px;">
                            <a href="{% url 'EditarLibro' libro.pk %}">Editar</a>
                         </button>
+                        {% endif %}
+                           
                      </li>
                   {%endfor%}
                   </ul>
@@ -55,7 +59,11 @@
                   <figure style="text-align: end;">
                      <img src="{% static 'images/about.png' %}" alt="img" />
                   </figure>
+                  
+                  {% if user.is_authenticated %}
                   <button class="read-more"><a href="{% url 'FormularioLibro' %}">Agregar nuevo Libro</a></button>
+                  {% endif %}
+                     
                </div>
             </div>
          </div>

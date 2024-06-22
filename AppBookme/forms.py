@@ -29,15 +29,11 @@ class EditorialFormulario(forms.Form):
 		model = Editoriales
 		fields = ['nombre', 'pais', 'direccion', 'libros']
 
-class Reseñas(forms.Form):
-    usuario = forms.ModelChoiceField(queryset=User.objects.all())
-    libro = forms.ModelChoiceField(queryset=Libro.objects.all())
-    comentario = forms.CharField()
-    fecha = forms.DateField()
-    class Meta:
-        model = Reseñas
-        fields = ['usuario', 'libro', 'comentario', 'fecha']
-        unique_together = ['usuario', 'libro']
+class ReseñasForm(forms.ModelForm):
+	class Meta:
+		model = Reseñas
+		fields=['comentario', 'calificacion']
+
 
 class UserRegisterForm(UserCreationForm):
 	email = forms.EmailField()
