@@ -40,7 +40,7 @@
                   {% for libro in libros %}
                      <li>
                         <a href="{% url 'DetalleLibro' libro.pk %}" style="font-size: 20px; color: purple; display: inline-block;">
-                        {{ libro.titulo }} - {{ libro.autor.nombre }} {{ libro.autor.apellido }}
+                        {{ libro.titulo }} - {{ libro.autor }}
                         </a>
                         
                         {% if user.is_authenticated %}    

@@ -53,11 +53,17 @@
             <div class="book-box">
                <figure>
                   <ul>
-                     <p style="font-size: 30px; color: purple; font-weight: bold"><strong>"{{ libro.titulo }}"</strong> </p>
-                     <p style="font-size: 25px; color: purple;">{{ libro.autor}} </p>
-                     <p style="font-size: 25px; color: purple;">{{ libro.genero.nombre }}</p>
-                     <p style="font-size: 25px; color: purple;">{{ libro.publicacion }}</p>
-                     <p style="font-size: 25px; color: purple; font-style: italic">{{ libro.sinopsis }}</p>
+                     <p style="font-size: 30px; color: purple; font-weight: bold">
+                        <strong>"{{ libro.titulo }}"</strong> 
+                     </p>
+                     <p style="font-size: 25px; color: purple;">
+                        <strong style="font-size: 20px; color: rgb(77, 0, 128);">Autor/a:</strong> <br>{{ libro.autor}} <br><br>
+                        <strong style="font-size: 20px; color: rgb(77, 0, 128);">Genero:</strong> <br>{{ libro.genero.nombre }} <br><br>
+                        <strong style="font-size: 20px; color: rgb(77, 0, 128);">Año de publicacion:</strong> <br>{{ libro.publicacion }}
+                     </p>
+                     <p style="font-size: 25px; color: purple; font-style: italic">
+                        <strong style="font-size: 20px; color: rgb(77, 0, 128);">Sinopsis:</strong> <br>{{ libro.sinopsis }}
+                     </p>
                   </ul>
                </figure>
                <h2>Reseñas</h2>
